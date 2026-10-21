@@ -1,27 +1,39 @@
 <div class="card">
+  <div class="card-header bg-primary text-white">
+    Películas mejor valoradas
+  </div>
 
-    <div class="card-header bg-primary text-white">
-        Películas mejor valoradas
+  <div class="card-body">
+    <div *ngIf="movies.length === 0">
+      No hay películas para mostrar.
     </div>
 
-    <div class="card-body">
+    <div class="row g-3" *ngIf="movies.length > 0">
+      <div class="col-12 col-sm-6 col-lg-4" *ngFor="let movie of movies">
+        <div class="card h-100">
+          <img
+            *ngIf="movie.poster_path"
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            [alt]="movie.title"
+            class="card-img-top"
+            loading="lazy"
+          />
 
-        <p><strong>Total de películas:</strong> {{ movies.length }}</p>
-
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <p class="card-text">
+              Calificación: {{ movie.vote_average }}
+            </p>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="selectMovie(movie.id)"
+            >
+              Ver detalles
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <ul class="list-group list-group-flush">
-
-        <li
-            *ngFor="let movie of movies"
-            class="list-group-item list-group-item-action"
-            (click)="selectMovie(movie.id)"
-            style="cursor: pointer;">
-
-            {{ movie.title }}
-
-        </li>
-
-    </ul>
-
+  </div>
 </div>

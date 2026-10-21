@@ -1,53 +1,38 @@
-@if(movie){
 
-<div class="card">
-
+@if (loading()) {
+  <div class="alert alert-info">
+    Cargando detalles de la película...
+  </div>
+} @else if (errorMessage()) {
+  <div class="alert alert-danger">
+    {{ errorMessage() }}
+  </div>
+} @else if (movie(); as selectedMovie) {
+  <div class="card">
     <img
-        [src]="imageUrl + movie.poster_path"
-        class="card-img-top">
+      [src]="imageUrl + selectedMovie.poster_path"
+      [alt]="selectedMovie.title"
+      class="card-img-top"
+    />
 
     <div class="card-body">
+      <h3>{{ selectedMovie.title }}</h3>
 
-        <h3>
+      <p>
+        <strong>Fecha:</strong>
+        {{ selectedMovie.release_date }}
+      </p>
 
-            {{ movie.title }}
+      <p>
+        <strong>Calificación:</strong>
+        {{ selectedMovie.vote_average }}
+      </p>
 
-        </h3>
-
-        <p>
-
-            <strong>Fecha:</strong>
-
-            {{ movie.release_date }}
-
-        </p>
-
-        <p>
-
-            <strong>Calificación:</strong>
-
-            {{ movie.vote_average }}
-
-        </p>
-
-        <p>
-
-            {{ movie.overview }}
-
-        </p>
-
+      <p>{{ selectedMovie.overview }}</p>
     </div>
-
-</div>
-
-}
-
-@else{
-
-<div class="alert alert-info">
-
+  </div>
+} @else {
+  <div class="alert alert-info">
     Selecciona una película.
-
-</div>
-
+  </div>
 }

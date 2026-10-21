@@ -1,8 +1,10 @@
+
 import {
   Component,
   effect,
   inject,
-  input
+  input,
+  signal
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -19,50 +21,47 @@ import { TMDB_CONFIG } from '../../config/tmdb.config';
   styleUrl: './movie-detail.css'
 })
 export class MovieDetail {
-
   movieId = input<number | null>(null);
 
   private movieService = inject(MovieService);
 
-  movie?: Movie;
+  movie = signal<Movie | null>(null);
+  loading = signal(false);
+  errorMessage = signal('');
 
   imageUrl = TMDB_CONFIG.imageUrl;
 
-  constructor(){
-
-    effect(() => {
-
+  constructor() {
+    effect((onCleanup) => {
       const id = this.movieId();
 
-      if(id){
+      this.movie.set(null);
+      this.errorMessage.set('');
 
-        this.loadMovie(id);
-
+      if (id === null) {
+        this.loading.set(false);
+        return;
       }
 
+      this.loading.set(true);
+
+      const subscription = this.movieService
+        .getMovieDetails(id)
+        .subscribe({
+          next: (movie) => {
+            this.movie.set(movie);
+            this.loading.set(false);
+          },
+          error: (err) => {
+            console.error('Error al cargar detalles:', err);
+            this.errorMessage.set(
+              'No fue posible cargar los detalles de esta película.'
+            );
+            this.loading.set(false);
+          }
+        });
+
+      onCleanup(() => subscription.unsubscribe());
     });
-
   }
-
-  loadMovie(id:number){
-
-    this.movieService.getMovieDetails(id)
-      .subscribe({
-
-        next:(movie)=>{
-
-          this.movie = movie;
-
-        },
-
-        error:(err)=>{
-
-          console.error(err);
-
-        }
-
-      });
-
-  }
-
 }
