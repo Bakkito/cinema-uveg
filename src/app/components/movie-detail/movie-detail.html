@@ -1,0 +1,53 @@
+@if(movie){
+
+<div class="card">
+
+    <img
+        [src]="imageUrl + movie.poster_path"
+        class="card-img-top">
+
+    <div class="card-body">
+
+        <h3>
+
+            {{ movie.title }}
+
+        </h3>
+
+        <p>
+
+            <strong>Fecha:</strong>
+
+            {{ movie.release_date }}
+
+        </p>
+
+        <p>
+
+            <strong>Calificación:</strong>
+
+            {{ movie.vote_average }}
+
+        </p>
+
+        <p>
+
+            {{ movie.overview }}
+
+        </p>
+
+    </div>
+
+</div>
+
+}
+
+@else{
+
+<div class="alert alert-info">
+
+    Selecciona una película.
+
+</div>
+
+}
