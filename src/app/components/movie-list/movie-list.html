@@ -1,9 +1,18 @@
+
 <div class="card">
   <div class="card-header bg-primary text-white">
     Películas mejor valoradas
   </div>
 
   <div class="card-body">
+    <div *ngIf="favoriteMessage" class="alert alert-success" role="status">
+      {{ favoriteMessage }}
+    </div>
+
+    <div *ngIf="favoriteError" class="alert alert-danger" role="alert">
+      {{ favoriteError }}
+    </div>
+
     <div *ngIf="movies.length === 0">
       No hay películas para mostrar.
     </div>
@@ -21,16 +30,37 @@
 
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
+
             <p class="card-text">
               Calificación: {{ movie.vote_average }}
             </p>
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="selectMovie(movie.id)"
-            >
-              Ver detalles
-            </button>
+
+            <div class="d-flex flex-wrap gap-2">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="selectMovie(movie.id)"
+              >
+                Ver detalles
+              </button>
+
+              <button
+                type="button"
+                class="btn"
+                [class.btn-success]="!isFavorite(movie.id)"
+                [class.btn-outline-danger]="isFavorite(movie.id)"
+                [disabled]="savingMovieId === movie.id"
+                (click)="toggleFavorite(movie)"
+              >
+                {{
+                  savingMovieId === movie.id
+                    ? 'Guardando...'
+                    : isFavorite(movie.id)
+                      ? 'Quitar favorito'
+                      : 'Añadir a favoritos'
+                }}
+              </button>
+            </div>
           </div>
         </div>
       </div>

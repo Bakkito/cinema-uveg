@@ -1,27 +1,75 @@
-<div class="container mt-4">
+ <div class="container mt-4 mb-5">
 
-  <h1 class="text-center mb-4">
-    Cinema UVEG
-  </h1>
+  <h1 class="text-center mb-4">Cinema UVEG</h1>
 
   <div class="row">
-
     <div class="col-md-5">
-
       <app-movie-list
         (movieSelected)="onMovieSelected($event)">
       </app-movie-list>
-
     </div>
 
     <div class="col-md-7">
-
       <app-movie-detail
         [movieId]="selectedMovieId()">
       </app-movie-detail>
-
     </div>
-
   </div>
+
+  <footer class="mt-5 pt-4 border-top">
+    <h2 class="h5">Información legal</h2>
+
+    <details class="mb-3">
+      <summary class="fw-bold">Aviso de privacidad</summary>
+      <div class="mt-3">
+        <p><strong>Responsable:</strong> Cinema UVEG, proyecto académico desarrollado con fines educativos.</p>
+
+        <p><strong>Datos tratados:</strong> la aplicación consulta información de películas mediante The Movie Database (TMDB). Si el usuario agrega favoritos, se almacenan el identificador de la película, su título, la ruta del póster y la fecha de registro en la base de datos local.</p>
+
+        <p><strong>Finalidad:</strong> mostrar películas, consultar sus detalles y permitir guardar, consultar y eliminar favoritos.</p>
+
+        <p><strong>Almacenamiento:</strong> los favoritos se guardan en una base de datos MariaDB administrada por el responsable del entorno local. No se deben introducir contraseñas, datos financieros ni información personal sensible.</p>
+
+        <p><strong>Servicios externos:</strong> la aplicación consulta TMDB y puede cargar imágenes desde sus servidores. El uso de esos servicios está sujeto a sus propias políticas de privacidad.</p>
+
+        <p><strong>Seguridad:</strong> el proyecto utiliza HTTPS en su entorno local y medidas de seguridad en el servidor. Estas medidas reducen riesgos, pero no garantizan seguridad absoluta.</p>
+
+        <p><strong>Conservación y eliminación:</strong> los favoritos pueden eliminarse desde la aplicación. Los datos permanecen en la base local hasta su eliminación o hasta que se borre la base de datos.</p>
+
+        <p><strong>Contacto:</strong> para dudas relacionadas con este proyecto académico, consulta al responsable del proyecto por el medio indicado por tu institución.</p>
+
+        <p>Este aviso es informativo y debe adaptarse a la identidad del responsable y a las obligaciones legales aplicables antes de utilizar la aplicación con usuarios reales.</p>
+      </div>
+    </details>
+
+    <details class="mb-3">
+      <summary class="fw-bold">Términos y condiciones</summary>
+      <div class="mt-3">
+        <p><strong>1. Finalidad.</strong> Cinema UVEG es una aplicación académica para explorar películas y administrar una lista de favoritos.</p>
+
+        <p><strong>2. Uso permitido.</strong> El usuario se compromete a utilizar la aplicación de forma lícita y a no intentar afectar su disponibilidad, seguridad o funcionamiento.</p>
+
+        <p><strong>3. Información de películas.</strong> Los títulos, sinopsis, calificaciones y pósteres pueden proceder de servicios externos. Su disponibilidad y exactitud dependen de dichos servicios.</p>
+
+        <p><strong>4. Favoritos.</strong> La función de favoritos permite registrar y eliminar referencias de películas en la base de datos del proyecto. No implica adquirir derechos sobre el contenido audiovisual.</p>
+
+        <p><strong>5. Propiedad intelectual.</strong> Los derechos de películas, imágenes, marcas y materiales de terceros pertenecen a sus respectivos titulares. El proyecto no reclama su propiedad.</p>
+
+        <p><strong>6. Disponibilidad.</strong> Al tratarse de un proyecto académico local, no se garantiza un servicio continuo ni la conservación permanente de los datos.</p>
+
+        <p><strong>7. Seguridad y uso responsable.</strong> El usuario no debe introducir información sensible ni utilizar la aplicación para actividades ilícitas.</p>
+
+        <p><strong>8. Cambios.</strong> Estos términos pueden actualizarse para reflejar cambios técnicos o académicos.</p>
+
+        <p><strong>9. Contacto.</strong> Las dudas sobre el funcionamiento pueden dirigirse al responsable académico del proyecto.</p>
+
+        <p>Al utilizar la aplicación, el usuario acepta estas condiciones de uso académico.</p>
+      </div>
+    </details>
+
+    <p class="text-muted small mb-0">
+      Cinema UVEG · Proyecto académico · Entorno local HTTPS
+    </p>
+  </footer>
 
 </div>

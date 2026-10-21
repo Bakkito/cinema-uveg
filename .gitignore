@@ -42,3 +42,17 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Variables de entorno y credenciales
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Copias de respaldo temporales
+*.bak
+
+!backend/
+!backend/.env.example
